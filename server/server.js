@@ -27,14 +27,15 @@ app.get('/calculator', (req, res) => {
   app.post('/addcalculator',(req,res) => {
     let addcalculator = req.body;
     bundle.push(addcalculator);
+    console.log(bundle);
+    for(let each of bundle){
+      let answer  = each.firstNum + (each.operation) + each.secondNum;
+      console.log(answer);
+    }
+    // console.log(bundle.firstNum);
+    // console.log(bundle.secondNum);
+    // console.log(bundle.operation);
 
-    let answer  = bundle.firstNum + bundle.secondNum;
-    console.log(bundle.firstNum);
-    console.log(bundle.secondNum);
-    console.log(bundle.operation);
-    console.log(answer);
-
-    // bundle.push(addcalculator);
     res.sendStatus(201);
   })
 

@@ -1,5 +1,6 @@
 $(document).ready(handleReady);
-let bundle = [];
+
+let bundle;
 
 function handleReady() {
     $('#firstNum').on('click', allBundle);
@@ -9,19 +10,16 @@ function handleReady() {
     $('#multiplication').on('click', operationBundle);
     $('#division').on('click', operationBundle);
     $('#equal').on('click', equal);
-    // calculator();
-
 }
 
 
 function allBundle(){
-    console.log('in this bitch');
     $('#output').empty();
     let firstNum = $('#firstNum').val();
     let secondNum = $('#secondNum').val();
     let operation = operationBundle();
 
-     bundle = [
+      bundle = [
         {
             firstNum:firstNum,
             secondNum:secondNum,
@@ -29,14 +27,14 @@ function allBundle(){
 
         }
     ];
-    console.log(bundle);
+    // console.log(bundle);
 }
 
 let equal = () => {
     $.ajax({
         method: "POST",
         url: "/addcalculator",
-        data: {bundle:bundle}
+        data: bundle
     }).then((response) => {
         allBundle()
     }).catch((error) => {
@@ -50,8 +48,9 @@ let calculator = () => {
       method: "GET",
       url: '/calculator',
     }).then((response) => {
+        console.log('inside get', response);
         bundle = response
-        allBundle()
+        equal()
     }).catch((error) => {
       console.log('Error with GET', error)
       alert('Error with GET')
@@ -59,7 +58,6 @@ let calculator = () => {
   }
 
 function operationBundle(){
-    console.log("inside");
     let addition = $('#addition').text();
     let subtraction =  $('#subtraction').text();
     let multiplication = $('#multiplication').text();
@@ -71,7 +69,6 @@ function operationBundle(){
         division:division
     };
     return operation;
-
 };
 
 
