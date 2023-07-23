@@ -9,14 +9,32 @@ app.use(bodyParser.urlencoded({extended:true}))
 // Serve up static files (HTML, CSS, Client JS)
 app.use(express.static('server/public'));
 
+let bundle =[
+  {
+    firstNum:1,
+    secondNum:2,
+    operation:'+'
+  }
+];
+
 
 // GET & POST Routes go here
-app.get('/', (req, res) => {
-    console.log('inside GET of guess')
-    res.send(200);
+app.get('/calculator', (req, res) => {
+    console.log('inside GET of calculator')
+    res.send(bundle);
   })
   
-  app.post('/',(req,res) => {
+  app.post('/addcalculator',(req,res) => {
+    let addcalculator = req.body;
+    bundle.push(addcalculator);
+
+    let answer  = bundle.firstNum + bundle.secondNum;
+    console.log(bundle.firstNum);
+    console.log(bundle.secondNum);
+    console.log(bundle.operation);
+    console.log(answer);
+
+    // bundle.push(addcalculator);
     res.sendStatus(201);
   })
 
