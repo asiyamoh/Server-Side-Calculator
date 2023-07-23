@@ -11,19 +11,14 @@ app.use(express.static('server/public'));
 
 
 // GET & POST Routes go here
-app.get('/getguess', (req, res) => {
+app.get('/', (req, res) => {
     console.log('inside GET of guess')
     res.send(200);
   })
   
-  app.post('/addguess',(req,res) => {
+  app.post('/',(req,res) => {
     res.sendStatus(201);
   })
-
-
-
-
-
 
 
 

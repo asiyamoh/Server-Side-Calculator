@@ -1,28 +1,45 @@
 $(document).ready(handleReady);
-
-let firstNum = 0;
-let secondNum = 0;
-let answer = 0;
+let bundle = [];
 
 function handleReady() {
-    $('#addition').on('click', addition);
-    $('#equal').on('click', handleEqual);
-    firstNum = Number[$('#firstNum').val()];
-    secondNum =  Number[$('#secondNum').val()];
+    $('#firstNum').on('click', allBundle);
+    $('#secondNum').on('click', allBundle);
+    $('#addition').on('click', operationBundle);
+    $('#subtraction').on('click', operationBundle);
+    $('#multiplication').on('click', operationBundle);
+    $('#division').on('click', operationBundle);
 
 }
 
 
-function handleEqual(){
-    // firstNum = $('#firstNum').val();
-    // secondNum = $('#secondNum').val();
-    console.log("the first num is",firstNum);
-    console.log("the second num is",secondNum);
+function allBundle(){
+    console.log('in this bitch');
+    let firstNum = $('#firstNum').val();
+    let secondNum = $('#secondNum').val();
 
+    let bundle = [
+        {
+            firstNum:firstNum,
+            secondNum:secondNum,
+            operation:operationBundle()
+
+        }
+    ];
+    console.log(bundle);
 }
 
-function addition(){
-    answer = firstNum + secondNum;
-    console.log('the answer is:', answer);
-}
+function operationBundle(){
+    console.log("inside");
+    let addition = $('#addition').text();
+    let subtraction =  $('#subtraction').text();
+    let multiplication = $('#multiplication').text();
+    let division = $('#division').text();
+    let operation = {
+        addition:addition,
+        subtraction:subtraction,
+        multiplication:multiplication,
+        division:division
+    };
+    return operation;
 
+};
