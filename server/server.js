@@ -25,23 +25,29 @@ app.get('/calculator', (req, res) => {
   })
   
   app.post('/addcalculator',(req,res) => {
-    let addcalculator = req.body;
-    bundle.push(addcalculator);
-    console.log(bundle);
+    let addCalculator = req.body;
+    bundle.push(addCalculator);
+    
     for(let each of bundle){
-      let answer  = each.firstNum + (each.operation) + each.secondNum;
+      let firstNum = parseInt(each.firstNum);
+      let secondNum = parseInt(each.secondNum);
+      let answer = 0;
+      if(each.operation === '+'){
+        answer = firstNum + secondNum;
+      }
+      if(each.operation === '-'){
+        answer = firstNum - secondNum;
+      }
+      if(each.operation === '*'){
+        answer = firstNum *  secondNum;
+      }
+      if(each.operation === '/'){
+        answer = firstNum / secondNum;
+      }
       console.log(answer);
     }
-    // console.log(bundle.firstNum);
-    // console.log(bundle.secondNum);
-    // console.log(bundle.operation);
-
     res.sendStatus(201);
   })
-
-
-
-
 
 
 app.listen(PORT, () => {
