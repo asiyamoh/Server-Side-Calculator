@@ -20,18 +20,18 @@ function operater(){
 
 
 
-let equal = () => {
-    let number1 = parseInt($('#firstNum').val());
-    let number2 = parseInt($('#secondNum').val());
-    console.log()
+function equal(){
+    let number1 = $('#firstNum').val();
+    let number2 = $('#secondNum').val();
 
       bundle = [
         {
             number1,
             number2,
-            operation
+            operation,
         }
     ];
+    console.log(bundle);
 
     $.ajax({
         method: "POST",
@@ -46,7 +46,7 @@ let equal = () => {
     })
 }
 
-let calculator = () => {
+function calculator(){
     $.ajax({
       method: "GET",
       url: '/calculator',
@@ -63,6 +63,7 @@ let calculator = () => {
     $('#output').empty()
     console.log('insde the render');
     for(let each of response){
+        console.log('Response:',response);
         $('#output').append(` 
        <li> ${each.number1} ${each.operation} 
        ${each.number2} = ${each.result}
