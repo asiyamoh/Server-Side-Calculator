@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({extended:true}))
 app.use(express.static('server/public'));
 
 
-let bundle =[]
+let bundle;
 // GET & POST Routes go here
 app.get('/calculator', (req, res) => {
     console.log('inside GET of calculator')
@@ -18,8 +18,8 @@ app.get('/calculator', (req, res) => {
   })
   
   app.post('/calculator',(req,res) => {
-    const number1 = req.body.number1
-    const number2 = req.body.number2
+    const number1 = Number(req.body.number1)
+    const number2 = Number(req.body.number2)
     const operation = req.body.operator
 
     let  results  =  calculator(number1,number2,operation)
