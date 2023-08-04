@@ -51,10 +51,11 @@ function calculator() {
         method: "GET",
         url: '/calculator',
     }).then((response) => {
-        console.log('insde the get', response)
-
-        renderCurrentAnswer(response.results)
-        console.log(typeof response)
+        console.log('insde the get')
+        
+        let  currentAnswer = response[response.length-1].results
+        renderCurrentAnswer(currentAnswer)
+        
         render(response)
 
     }).catch((error) => {
@@ -66,12 +67,14 @@ function calculator() {
 
 
 function renderCurrentAnswer(currentAnswer) {
+    $('#answer').empty()
     console.log('the cuurent answer is:', currentAnswer);
     if (currentAnswer == undefined) {
         currentAnswer = ''
     }
-    $('#answer').empty()
-    $('#answer').append(`${currentAnswer}`)
+    else {
+        $('#answer').append(`${currentAnswer}`)
+    }
 }
 
 function render(response) {
