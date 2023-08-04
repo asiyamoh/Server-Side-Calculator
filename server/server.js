@@ -13,7 +13,7 @@ app.use(express.static('server/public'));
 let bundle = [];
 // GET & POST Routes go here
 app.get('/calculator', (req, res) => {
-  console.log('inside GET of calculator')
+  console.log('inside GET of calculator', bundle)
   res.send(bundle)
 })
 
@@ -21,8 +21,10 @@ app.post('/calculator', (req, res) => {
   let number1 = Number(req.body.number1)
   let number2 = Number(req.body.number2)
   let operation = req.body.operation
+  console.log(number1,number2,operation)
   
   let results = calc(number1, number2, operation)
+  console.log(results)
 
   let newBundle = {
     number1,
@@ -32,7 +34,8 @@ app.post('/calculator', (req, res) => {
   }
 
   bundle.push(newBundle);
-  res.sendStatus(200);
+  console.log(bundle);
+  res.sendStatus(201);
 })
 
 function calc(number1, number2, operation) {
